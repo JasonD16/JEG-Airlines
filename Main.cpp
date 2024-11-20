@@ -2,7 +2,7 @@
 #include <iomanip>
 #include <forward_list>
 #include <algorithm>
-//3kurfu
+
 #include "User.h"
 #include "Flight.h"
 #include "Country.h"
