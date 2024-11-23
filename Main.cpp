@@ -10,7 +10,6 @@
 #include "Functions.h"
 
 using namespace std;
-
 int main()
 {
 	//begin data fragment
@@ -70,7 +69,7 @@ int main()
 	cout << "1- LOG IN (if you already have an account)" << endl
 		<< "2- SIGN UP (if you don't)" << endl
 		<< "3- Forgot Password" << endl
-		<< "4- Exit the app\n" << endl
+		<< "4- Exit the app" << endl << endl
 		<< "Enter : ";
 	cin >> choice;
 	do
@@ -95,16 +94,16 @@ int main()
 				}
 
 				cout << "Enter your email/username: "; //User Input
-				cin.ignore();
-				getline(cin, username);
+				cin >> username;
 				for (char& c : username)
 				{
 					c = tolower(c);
 				}
 
 				cout << endl << "Enter password: "; // User Input
-				getline(cin, password);
 
+				cin >> password;
+				//Time complexity:O(n)
 				for (int i = 0; i < UsersList.size(); i++)
 				{
 					if (username == UsersList[i].getEmail() && UsersList[i].getPassword() == password)
@@ -124,7 +123,7 @@ int main()
 							<< "3-Scheduler" << endl
 							<< "4-Print Account Details" << endl
 							<< "5-Google Air MAPS" << endl
-							<< "6-Sign Out" << endl
+							<< "6-Sign Out" << endl << endl
 							<< "Enter: ";
 						cin >> choice2;
 
@@ -137,7 +136,9 @@ int main()
 							case 1: //Book flights
 							{
 								FlightChoice = 0;
-								cout << "Here are our latest flight destinations: " << endl;
+								cout << endl << "Here are our latest flight destinations: " << endl << endl;
+
+								//Time complexity:O(n)
 								for (int i = 0; i < AllFlights.size(); i++)
 								{
 									cout << i + 1 << "-";
@@ -156,7 +157,7 @@ int main()
 								UsersList[i].setFlight(AllFlights[FlightChoice - 1]);
 								CurrentUser = UsersList[i];
 
-								cout << "You have successfully booked the following flight: " << endl;
+								cout << "You have successfully booked the following flight: " << endl << endl;
 								cout << FlightChoice << "-";
 								AllFlights[FlightChoice - 1].PrintFlightDetails();
 								WaitandClear();
@@ -166,20 +167,29 @@ int main()
 							}
 							case 2: //CANCEL A BOOKING
 							{
-								int cancel = 0;
-								cout << "Which of your flights would you like to cancel?" << endl;
-								Flight f = CurrentUser.getFlight(); // this should be an array
-								f.PrintFlightDetails();
-								cout << "Enter: ";
-								cin >> cancel;
-								Flight x;
-								CurrentUser.setFlight(x);
+								if (UsersList[i].getFlight().getflightID() != 0)
+								{
+									int cancel = 0;
+									cout << endl << "Which of your flights would you like to cancel?" << endl << endl;
+									Flight f = CurrentUser.getFlight(); // this should be an array
+									f.PrintFlightDetails();
+									cout << "Enter: ";
+									cin >> cancel;
+									Flight x;
+									CurrentUser.setFlight(x);
+									WaitandClear();
+								}
+								else
+								{
+									cout << "You did not book any flights";
+								}
 								WaitandClear();
+
 								break;
 							}
 							case 3: // SCHEDULER
 							{
-								cout << "Welcome to our scheduler!" << endl
+								cout << endl << "Welcome to our scheduler!" << endl
 									<< "Here you can schedule your activities or tasks you need or would like to accomplish throughout the day of your flight" << endl << endl;
 
 								int act = 0;
@@ -190,73 +200,95 @@ int main()
 								cin >> act;
 								switch (act)
 								{
-								case 1:
-								{
-									WaitandClear();
-									int AddAct = 0;
-
-									cout << "Do you want to add an activity/task?" << endl << "If yes enter 1" << endl
-										<< "If not enter any number" << endl << endl
-										<< "Enter : ";
-									cin >> AddAct;
-
-									do
+									case 1:
 									{
-										string ActName = "";
-										int s = 0;
-										int e = 0;
+										WaitandClear();
+										int AddAct = 0;
 
-										cout << "Enter Activity Name: ";
-										cin.ignore();
-										getline(cin, ActName);
+										cout << "You can add multiple tasks. Each task will take 1 hour." << endl;
+										cout << "However, no activity can start if the starting time is 1 hour before your flight's departure time." << endl;
+										cout << "You must be at the airport at least 1 hour before your flight." << endl;
+										cout << endl;
 
-										cout << "Enter Start Time: ";
-										cin >> s;
-
-										cout << "Enter End Time: ";
-										cin >> e;
-
-										Activity NewActivity(ActName, s, e);
-										Schedul.push(NewActivity);
-										CurrentUser.setSchedule(Schedul);
-
-										cout << endl << "Do you want to add an activity/task?" << endl << "If yes enter 1" << endl
+										cout << "Do you want to add an activity/task?" << endl << "If yes enter 1" << endl
 											<< "If not enter any number" << endl << endl
 											<< "Enter : ";
 										cin >> AddAct;
-									} while (AddAct == 1);
-									WaitandClear();
-									break;
-								}
-								case 2:
-								{
-									system("cls");
-									queue<Activity> CurrentQueue = CurrentUser.getQueue();
-									if (CurrentQueue.empty() == true)
-									{
-										cout << "You did not add any activities therefore there is no schedule avaialble" << endl;
-										WaitandClear();
-									}
-									else
-									{
-										/*while (CurrentUser.getQueue().empty() == false)
-										{
-											Activity CurrentActivity = CurrentUser.getQueue().front();
-											CurrentActivity.PrintActivity(CurrentActivity);
-											CurrentUser.getQueue().pop();
-										}*/
-										while (CurrentQueue.empty() == false)
-										{
-											Activity CurrentActivity = CurrentQueue.front();
-											CurrentActivity.PrintActivity(CurrentActivity);
-											CurrentQueue.pop();
-										}
-										queue<Activity> x = {};
-										UsersList[i].setSchedule(x); //or UsersList[i].setSchedule(CurrentQueue) 
 
+										int previousEndTime = -1; // Initialize to -1 to indicate no previous activity
+
+										do
+										{
+											string ActName = "";
+											int s = 0;
+											int e = 0;
+
+											cout << "Enter Activity Name: ";
+											cin.ignore();
+											getline(cin, ActName);
+
+											if (previousEndTime == -1)
+											{
+												cout << "Enter Start Time (24-hour format, in hours): ";
+												cin >> s;
+											}
+											else
+											{
+												s = previousEndTime; // Automatically set start time to the previous activity's end time
+												cout << "Start Time for this activity is automatically set to: " << s << endl;
+											}
+
+											// Check if starting time is 1 hour before flight departure
+											if (s == UsersList[i].getFlight().getHourOfDeparture() - 1)
+											{
+												cout << endl << "No more activities can be added as the starting time is 1 hour before your flight's departure." << endl;
+												break;
+											}
+
+											e = s + 1; // Each task takes 1 hour
+											cout << "End Time for this activity is automatically set to: " << e << endl;
+
+											Activity NewActivity(ActName, s, e);
+											// Time complexity: O(1)
+											Schedul.push(NewActivity);
+											CurrentUser.setSchedule(Schedul);
+
+											previousEndTime = e; // Update the end time for the next activity
+											cout << endl << "Do you want to add another activity/task?" << endl << "If yes enter 1" << endl
+												<< "If not enter any number" << endl << endl
+												<< "Enter : ";
+											cin >> AddAct;
+										} while (AddAct == 1);
+										WaitandClear();
+										break;
 									}
-									break;
-								}
+									case 2:
+									{
+										system("cls");
+										queue<Activity> CurrentQueue = CurrentUser.getQueue();
+										if (CurrentQueue.empty() == true)
+										{
+											cout << "You did not add any activities therefore there is no schedule avaialble" << endl;
+											WaitandClear();
+										}
+										else
+										{
+
+											//Time complexity:O(n)
+											while (CurrentQueue.empty() == false)
+											{
+												Activity CurrentActivity = CurrentQueue.front();
+												CurrentActivity.PrintActivity(CurrentActivity);
+												CurrentQueue.pop();
+												WaitandClear();
+											}
+											queue<Activity> x = {};
+											CurrentUser.setSchedule(x);
+											UsersList[i].setSchedule(x); //or UsersList[i].setSchedule(CurrentQueue) 
+
+										}
+										break;
+									}
 
 								}
 								break;
@@ -305,7 +337,7 @@ int main()
 								<< "3-Scheduler" << endl
 								<< "4-Print Account Details" << endl
 								<< "5-Google Air MAPS" << endl
-								<< "6-Sign Out" << endl
+								<< "6-Sign Out" << endl << endl
 								<< "Enter: ";
 							cin >> choice2;
 						} while (choice2 > 0 && choice2 < 7);
@@ -343,14 +375,18 @@ int main()
 			//end data fragments
 
 
-			cout << "Enter Email: ";
-			cin >> Email;
+			cout << endl << "Enter Email: ";
+			cin.ignore();
+			getline(cin, Email);
+
 
 			cout << endl << "Enter Address: ";
-			cin >> Address;
+
+			getline(cin, Address);
 
 			cout << endl << "Enter Phone: ";
-			cin >> Phone;
+
+			getline(cin, Phone);
 
 			cout << endl << "Enter a Password that follow these rules: " << endl
 				<< "1- The password must be at least 8 characters long" << endl
@@ -384,6 +420,7 @@ int main()
 			cin.ignore();
 			getline(cin, username);
 
+			//Time complexity:O(n)
 			for (char& c : username)
 			{
 				c = tolower(c);
@@ -394,6 +431,7 @@ int main()
 			cout << "Enter Phone Number: ";
 			getline(cin, PhoneNum);
 
+			//Time complexity:O(n)
 			for (int i = 0; i < UsersList.size(); i++)
 			{
 				if (username == UsersList[i].getEmail() && UsersList[i].getPhone() == PhoneNum)
@@ -433,7 +471,7 @@ int main()
 		cout << "1- LOG IN (if you already have an account)" << endl
 			<< "2- SIGN UP (if you don't)" << endl
 			<< "3- Forgot password" << endl
-			<< "4- Exit the app" << endl
+			<< "4- Exit the app" << endl << endl
 			<< "Enter : ";
 		cin >> choice;
 
