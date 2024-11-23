@@ -22,9 +22,9 @@ Activity::Activity(string n, int s, int e)
 
 void Activity::PrintActivity(Activity& activity)
 {
-	cout << "Activity Name:" << setw(width) << activity.ActivityName << endl
-		<< "Start time: " << setw(width) << activity.StartTime << endl
-		<< "End time: " << setw(width) << activity.EndTime << endl << endl;
+	cout << "Activity Name:" << setw(width) << left << activity.ActivityName << setw(width) << endl
+		<< "Start time: " << setw(width) << left << activity.StartTime <<setw(width) << endl
+		<< "End time: " << setw(width) << left << activity.EndTime << setw(width) << endl << endl;
 }
 // Schedule
 Schedule::Schedule()
