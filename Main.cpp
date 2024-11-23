@@ -344,14 +344,13 @@ int main()
 
 
 			cout << "Enter Email: ";
-			getline(cin, Email);
 			cin >> Email;
 
 			cout << endl << "Enter Address: ";
-			getline(cin, Address);
+			cin >> Address;
 
 			cout << endl << "Enter Phone: ";
-			getline(cin, Phone);
+			cin >> Phone;
 
 			cout << endl << "Enter a Password that follow these rules: " << endl
 				<< "1- The password must be at least 8 characters long" << endl
