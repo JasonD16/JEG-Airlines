@@ -14,51 +14,51 @@ using namespace std;
 int main()
 {
 	//begin data fragment
-	//set<User> x;
-	vector<User> UsersList = {}; // use set instead?
+	vector<User> UsersList = {}; 
 	set<int> IDlist = {};
 	set<string> EmailList = {};
 	vector<Flight> AllFlights;
 	Country Lebanon;
 	queue<Activity> Schedul = {};
+	int flying = 0;
 
 	//First flight from Beirut to NYC
-	Country Turkey("Turkey", "8,000 years", "Ankara", "Turkish", { "Hagia Sophia", "Topkapi Palace", "Blue Mosque" }, "Döner Kebab", "12:00 PM");
-	Country Greece("Greece", "5,000 years", "Athens", "Greek", { "Acropolis of Athens", "Parthenon", "Ancient Olympia" }, "Moussaka", "1:00 PM");
-	Country	Italy("Italy", "3,000 years", "Rome", "Italian", { "Colosseum", "Roman Forum", "Leaning Tower of Pisa" }, "Pizza", "3:00 PM");
-	Country France("France", "1,000 years", "Paris", "French", { "Eiffel Tower", "Louvre Museum", "Notre-Dame Cathedral" }, "Croissant", "5:00 PM");
-	Country UnitedKingdom("United Kingdom", "1,000 years", "London", "English", { "Big Ben", "Buckingham Palace", "Tower of London" }, "Fish and Chips", "7:00 PM");
-	Country Iceland("Iceland", "20 million years", "Reykjavík", "Icelandic", { "Thingvellir National Park", "Blue Lagoon", "Jökulsárlón Glacier Lagoon" }, "Skyr", "9:00 PM");
-	Country Greenland("Greenland", "4 billion years", "Nuuk", "Greenlandic and Danish", { "Ilulissat Icefjord", "Qaqortoq", "Nuuk Cathedral" }, "Dried Fish", "11:00 PM");
-	Country Canada("Canada", "4.5 billion years", "Ottawa", "English and French", { "Niagara Falls", "CN Tower", "Rocky Mountains" }, "Poutine", "1:00 AM");
-	Country UnitedStates("United States", "250 years", "Washington, D.C.", "English", { "Statue of Liberty", "Golden Gate Bridge", "Grand Canyon" }, "Burger", "4:00 PM");
+	Country Turkey("Turkey", "8,000 years", "Ankara", "Turkish", { "Hagia Sophia", "Topkapi Palace", "Blue Mosque" }, "Döner Kebab", "12:00");
+	Country Greece("Greece", "5,000 years", "Athens", "Greek", { "Acropolis of Athens", "Parthenon", "Ancient Olympia" }, "Moussaka", "13:00");
+	Country	Italy("Italy", "3,000 years", "Rome", "Italian", { "Colosseum", "Roman Forum", "Leaning Tower of Pisa" }, "Pizza", "15:00");
+	Country France("France", "1,000 years", "Paris", "French", { "Eiffel Tower", "Louvre Museum", "Notre-Dame Cathedral" }, "Croissant", "17:00");
+	Country UnitedKingdom("United Kingdom", "1,000 years", "London", "English", { "Big Ben", "Buckingham Palace", "Tower of London" }, "Fish and Chips", "19:00");
+	Country Iceland("Iceland", "20 million years", "Reykjavík", "Icelandic", { "Thingvellir National Park", "Blue Lagoon", "Jökulsárlón Glacier Lagoon" }, "Skyr", "21:00");
+	Country Greenland("Greenland", "4 billion years", "Nuuk", "Greenlandic and Danish", { "Ilulissat Icefjord", "Qaqortoq", "Nuuk Cathedral" }, "Dried Fish", "23:00");
+	Country Canada("Canada", "4.5 billion years", "Ottawa", "English and French", { "Niagara Falls", "CN Tower", "Rocky Mountains" }, "Poutine", "1:00");
+	Country UnitedStates("United States", "250 years", "Washington, D.C.", "English", { "Statue of Liberty", "Golden Gate Bridge", "Grand Canyon" }, "Burger", "4:00");
 
 	forward_list<Country> Trajectory = { Lebanon, Turkey, Greece, Italy, France, UnitedKingdom, Iceland, Greenland, Canada, UnitedStates };
 
-	Flight Flight1(1, "Beirut Rafic Hariri International Airport (BEY)", "John F. Kennedy International Airport (JFK)", "", "29/11/2024", "30/11/2024", 10, 4, Trajectory);
+	Flight Flight1(1, "Beirut Rafic Hariri International Airport (BEY)", "John F. Kennedy International Airport (JFK)", "", "29/11/2024", "30/11/2024", 10, 4, Trajectory, 29, 250);
 
 	//Second flight
-	Country Turkey2("Turkey", "8,000 years", "Ankara", "Turkish", { "Hagia Sophia", "Topkapi Palace", "Blue Mosque" }, "Döner Kebab", "1:00 AM");
-	Country Russia("Russia", "1,000 years", "Moscow", "Russian", { "Red Square", "St. Basil's Cathedral, Kremlin" }, "Borsch", "5:00 AM");
-	Country Mongolia("Mongolia", "2,000 years", "Ulaanbaatar", "Mongolian", { "Gorkhi-Terelj National Park", "Khustain Nuruu National Park" }, "Buuz", "8:00 AM");
-	Country China("China", "5,000 years", "Beijing", "Mandarin Chinese", { "Great Wall of China", "Forbidden City, Temple of Heaven" }, "Peking Duck", "11:00 AM");
-	Country Japan("Japan", "3,000 years", "Tokyo", "Japanese", { "Tokyo Skytree", "Meiji Shrine, Imperial Palace" }, "Sushi", "7:00 PM");
+	Country Turkey2("Turkey", "8,000 years", "Ankara", "Turkish", { "Hagia Sophia", "Topkapi Palace", "Blue Mosque" }, "Döner Kebab", "1:00");
+	Country Russia("Russia", "1,000 years", "Moscow", "Russian", { "Red Square", "St. Basil's Cathedral, Kremlin" }, "Borsch", "5:00");
+	Country Mongolia("Mongolia", "2,000 years", "Ulaanbaatar", "Mongolian", { "Gorkhi-Terelj National Park", "Khustain Nuruu National Park" }, "Buuz", "8:00");
+	Country China("China", "5,000 years", "Beijing", "Mandarin Chinese", { "Great Wall of China", "Forbidden City, Temple of Heaven" }, "Peking Duck", "11:00");
+	Country Japan("Japan", "3,000 years", "Tokyo", "Japanese", { "Tokyo Skytree", "Meiji Shrine, Imperial Palace" }, "Sushi", "19:00");
 
 	forward_list<Country> Trajectory2 = { Lebanon, Turkey2, Mongolia, China, Japan };
 
-	Flight Flight2(2, "Beirut Rafic Hariri International Airport (BEY)", "Haneda Airport(HND)", "", "3/12/2024", "4/12/2024", 11, 7, Trajectory2);
+	Flight Flight2(2, "Beirut Rafic Hariri International Airport (BEY)", "Haneda Airport(HND)", "", "03/12/2024", "04/12/2024", 23, 19, Trajectory2, 3, 250);
 
 	//Third Flight
-	Country Turkey3("Turkey", "8,000 years", "Ankara", "Turkish", { "Hagia Sophia", "Topkapi Palace", "Blue Mosque" }, "Döner Kebab", "3:00 AM");
-	Country SaudiArabia("Saudi Arabia", "3,000 years", "Riyadh", "Arabic", { "Masjid al-Haram, Masjid al-Nabawi, Al-Ula Old Town" }, "Kabsa", "7:00 AM");
-	Country UnitedArabEmirate("United Arab Emirates", "200 years", "Abu Dhabi", "Arabic", { "Burj Khalifa, Sheikh Zayed Grand Mosque, Louvre Abu Dhabi" }, "Machboos", "10:00 AM");
-	Country India("India", "5,000 years", "New Delhi", "Hindi", { "Taj Mahal, Red Fort, Hawa Mahal" }, "Butter Chicken", "1:00 PM");
-	Country Indonesia("Indonesia", "70,000 years", "Jakarta", "Indonesian", { "Borobudur Temple, Bali, Komodo National Park" }, "Nasi Goreng", "7:00 PM");
-	Country Australia("Australia", "45,000 years", "Canberra", "English", { "Sydney Opera House, Great Barrier Reef, Uluru (Ayers Rock)" }, "Meat Pie", "10:00 AM");
+	Country Turkey3("Turkey", "8,000 years", "Ankara", "Turkish", { "Hagia Sophia", "Topkapi Palace", "Blue Mosque" }, "Döner Kebab", "3:00");
+	Country SaudiArabia("Saudi Arabia", "3,000 years", "Riyadh", "Arabic", { "Masjid al-Haram, Masjid al-Nabawi, Al-Ula Old Town" }, "Kabsa", "7:00");
+	Country UnitedArabEmirate("United Arab Emirates", "200 years", "Abu Dhabi", "Arabic", { "Burj Khalifa, Sheikh Zayed Grand Mosque, Louvre Abu Dhabi" }, "Machboos", "10:00");
+	Country India("India", "5,000 years", "New Delhi", "Hindi", { "Taj Mahal, Red Fort, Hawa Mahal" }, "Butter Chicken", "13:00");
+	Country Indonesia("Indonesia", "70,000 years", "Jakarta", "Indonesian", { "Borobudur Temple, Bali, Komodo National Park" }, "Nasi Goreng", "19:00");
+	Country Australia("Australia", "45,000 years", "Canberra", "English", { "Sydney Opera House, Great Barrier Reef, Uluru (Ayers Rock)" }, "Meat Pie", "10:00");
 
 	forward_list<Country> Trajectory3 = { Lebanon, Turkey3, SaudiArabia, UnitedArabEmirate, India, Indonesia, Australia };
 
-	Flight Flight3(3, "Beirut Rafic Hariri International Airport (BEY)", "Sydney Kingsford Smith International Airport (SYD)", "", "23/12/2024", "24/12/2024", 1, 10, Trajectory3);
+	Flight Flight3(3, "Beirut Rafic Hariri International Airport (BEY)", "Sydney Kingsford Smith International Airport (SYD)", "", "23/12/2024", "24/12/2024", 1, 10, Trajectory3, 23, 250);
 
 	//Add to the vector containing all flights
 	AllFlights = { Flight1, Flight2, Flight3 };
@@ -67,14 +67,16 @@ int main()
 	int choice = 0;
 	printIntro();
 
-	cout << "1- LOG IN (if you already have an account)" << endl
-		<< "2- SIGN UP (if you don't)" << endl
-		<< "3- Forgot Password" << endl
-		<< "4- Exit the app" << endl << endl
-		<< "Enter : ";
-	cin >> choice;
+	
 	do
 	{
+		cout << "1- LOG IN (if you already have an account)" << endl
+			<< "2- SIGN UP (if you don't)" << endl
+			<< "3- Forgot Password" << endl
+			<< "4- Exit the app" << endl << endl
+			<< "Enter : ";
+		cin >> choice;
+
 		switch (choice)
 		{
 		case 1: // log in
@@ -114,9 +116,7 @@ int main()
 						LogInComplete = 1;
 						cout << endl << "Login Successful" << endl;
 						WaitandClear();
-						//EDIT BEGIN
-						//if (LogInComplete == 1) //After signing up and logging in
-						//{
+					
 						int choice2 = 0;
 						cout << "Welcome to our Airport Application!!!" << endl
 							<< "What would you like to do?" << endl
@@ -150,12 +150,22 @@ int main()
 								do
 								{
 									cout << "To book a flight please Enter the number near the desired flight" << endl
-										<< "To go back enter " << AllFlights.size() + 2 << endl; // need adjustments
+										<< "To go back enter " << AllFlights.size() + 2 << endl; 
 									cin >> FlightChoice;
-								} while (FlightChoice < 1 && FlightChoice > AllFlights.size() + 2);
+								} while (FlightChoice < 1 || FlightChoice > AllFlights.size() + 2);
 
 								if (FlightChoice == AllFlights.size() + 2) //Go back
+								{
+									WaitandClear();
 									break;
+								}
+								if (AllFlights[FlightChoice - 1].getNumSeats() == 0)
+								{
+									cout << "This flight is fully book!" << endl << "Choose another Flight" << endl;
+									WaitandClear();
+									break;
+								}
+								AllFlights[FlightChoice - 1].setNumSeatsmm();
 								UsersList[i].setFlight(AllFlights[FlightChoice - 1]);
 								CurrentUser = UsersList[i];
 
@@ -173,12 +183,15 @@ int main()
 								{
 									int cancel = 0;
 									cout << endl << "Which of your flights would you like to cancel?" << endl << endl;
-									Flight f = CurrentUser.getFlight(); // this should be an array
+									Flight f = UsersList[i].getFlight(); // this should be an array
 									f.PrintFlightDetails();
-									cout << "Enter: ";
+									cout << "Enter the FLIGHT ID of the flight you want to cancel: ";
 									cin >> cancel;
+									AllFlights[cancel - 1].setNumSeatspp();
 									Flight x;
 									CurrentUser.setFlight(x);
+									UsersList[i].setFlight(x);
+
 									WaitandClear();
 								}
 								else
@@ -191,8 +204,16 @@ int main()
 							}
 							case 3: // SCHEDULER
 							{
+								
 								cout << endl << "Welcome to our scheduler!" << endl
 									<< "Here you can schedule your activities or tasks you need or would like to accomplish throughout the day of your flight" << endl << endl;
+
+								if (UsersList[i].getFlight().getflightID() == 0)
+								{
+									cout << endl << "You have not booked any flight therefore you cannot schedule!" << endl;
+									WaitandClear();
+									break;
+								}
 
 								int act = 0;
 
@@ -202,13 +223,18 @@ int main()
 								cin >> act;
 								switch (act)
 								{
+									
 									case 1:
 									{
+										if (Schedul.empty() == false) //Empty schedule every time user wants to make A new one
+											Schedul = {};
+										flying = 0;
 										WaitandClear();
 										int AddAct = 0;
 
 										cout << "You can add multiple tasks. Each task will take 1 hour." << endl;
 										cout << "However, no activity can start if the starting time is 1 hour before your flight's departure time." << endl;
+										cout << "Your flight departure time is: " << UsersList[i].getFlight().getDateDeparture() << "	At: " << UsersList[i].getFlight().getHourOfDeparture() << ":00" << endl;
 										cout << "You must be at the airport at least 1 hour before your flight." << endl;
 										cout << endl;
 
@@ -218,8 +244,10 @@ int main()
 										cin >> AddAct;
 
 										int previousEndTime = -1; // Initialize to -1 to indicate no previous activity
+										int flag = 0; // flag value for day
+										int day = 0;
 
-										do
+										while (AddAct == 1)
 										{
 											string ActName = "";
 											int s = 0;
@@ -229,19 +257,43 @@ int main()
 											cin.ignore();
 											getline(cin, ActName);
 
-											if (previousEndTime == -1)
+											if (flag == 0)
 											{
-												cout << "Enter Start Time (24-hour format, in hours): ";
-												cin >> s;
+												cout << "Enter the day of the task: ";
+												cin >> day;
+												flag = 1;
 											}
 											else
 											{
+												cout << endl << "Day: " << day;
+											}
+											if (previousEndTime == -1)
+											{
+
+												if (day < UsersList[i].getFlight().getDepartureDay())
+												{
+													cout << endl << "Enter Start Time (24-hour format, in hours): ";
+													cin >> s;
+
+												}
+												else if (day == UsersList[i].getFlight().getDepartureDay())
+												{
+													do
+													{
+														cout << "Enter Start Time (24-hour format, in hours): ";
+														cin >> s;
+													} while (s > UsersList[i].getFlight().getHourOfDeparture() - 1 || s < 0);
+
+												}
+											}
+											else 
+											{
 												s = previousEndTime; // Automatically set start time to the previous activity's end time
-												cout << "Start Time for this activity is automatically set to: " << s << endl;
+												cout << endl << "Start Time for this activity is automatically set to: " << s << endl;
 											}
 
 											// Check if starting time is 1 hour before flight departure
-											if (s == UsersList[i].getFlight().getHourOfDeparture() - 1)
+											if (s >= UsersList[i].getFlight().getHourOfDeparture() - 1 && UsersList[i].getFlight().getDepartureDay() == day)
 											{
 												cout << endl << "No more activities can be added as the starting time is 1 hour before your flight's departure." << endl;
 												break;
@@ -250,24 +302,32 @@ int main()
 											e = s + 1; // Each task takes 1 hour
 											cout << "End Time for this activity is automatically set to: " << e << endl;
 
+											previousEndTime = e; // Update the end time for the next activity
+											if (e == 24)
+											{
+												day++;
+												previousEndTime = 0;
+											}
+
 											Activity NewActivity(ActName, s, e);
 											// Time complexity: O(1)
 											Schedul.push(NewActivity);
 											CurrentUser.setSchedule(Schedul);
+											UsersList[i].setSchedule(Schedul);
 
-											previousEndTime = e; // Update the end time for the next activity
 											cout << endl << "Do you want to add another activity/task?" << endl << "If yes enter 1" << endl
 												<< "If not enter any number" << endl << endl
 												<< "Enter : ";
 											cin >> AddAct;
-										} while (AddAct == 1);
+										}
+										
 										WaitandClear();
 										break;
 									}
 									case 2:
 									{
 										system("cls");
-										queue<Activity> CurrentQueue = CurrentUser.getQueue();
+										queue<Activity> CurrentQueue = UsersList[i].getQueue();
 										if (CurrentQueue.empty() == true)
 										{
 											cout << "You did not add any activities therefore there is no schedule avaialble" << endl;
@@ -275,7 +335,7 @@ int main()
 										}
 										else
 										{
-
+											
 											//Time complexity:O(n)
 											while (CurrentQueue.empty() == false)
 											{
@@ -287,7 +347,7 @@ int main()
 											queue<Activity> x = {};
 											CurrentUser.setSchedule(x);
 											UsersList[i].setSchedule(x); //or UsersList[i].setSchedule(CurrentQueue) 
-
+											flying = 1;
 										}
 										break;
 									}
@@ -305,12 +365,12 @@ int main()
 							case 5: //Google Air MAPS
 							{
 								system("cls");
-								if (CurrentUser.getQueue().empty() == true)
+								if (CurrentUser.getQueue().empty() == false)
 								{
 									cout << "You have not boarded the plane, yet you cannot use this function yet" << endl
 										<< "When you finish your schedule you will be able to use this function" << endl;
 								}
-								else
+								else if(flying == 1)
 								{
 									Flight f = CurrentUser.getFlight();
 									f.PrintTrajectory();
@@ -444,7 +504,8 @@ int main()
 						<< "Enter new password: ";
 
 					getline(cin, pass);
-					UsersList[i].setPassword(pass); // Problem here when resetting the password it is also resetting the flight object of the user, why?
+					UsersList[i].setPassword(pass); 
+					cout << "Password Reset Successfull!" << endl;
 					break;
 				}
 			}
@@ -461,6 +522,7 @@ int main()
 		default:
 		{
 			cout << endl << "Please enter one of the options that are available" << endl;
+			choice = -1;
 			break;
 		}
 		}
@@ -470,17 +532,9 @@ int main()
 		printIntro();
 		/*if (LogInComplete == 1)
 			break;*/
-		cout << "1- LOG IN (if you already have an account)" << endl
-			<< "2- SIGN UP (if you don't)" << endl
-			<< "3- Forgot password" << endl
-			<< "4- Exit the app" << endl << endl
-			<< "Enter : ";
-		cin >> choice;
+	
 
-	} while (choice > 0 && choice < 5);
-
-
-
+	} while ((choice > 0 && choice < 5) || choice == -1);
 
 	return 0;
 }

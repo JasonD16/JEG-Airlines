@@ -17,13 +17,15 @@ Flight::Flight() {
 	setDateArrival("");
 	setHourOfDeparture(0);
 	setArrivalTime(0);
+	setDepartureDay(0);
 
 }
 
-Flight::Flight(int flightID, string departureAirport, string arrivalAirport, string stop_overAirport, string DateDeparture, string DateArrival, int Departuretime, int ArrivalTime, forward_list<Country>& trajectory) {
+Flight::Flight(int flightID, string departureAirport, string arrivalAirport, string stop_overAirport, string DateDeparture, string DateArrival, int Departuretime, int ArrivalTime, forward_list<Country>& trajectory, int day, int seats) {
 
 	setFlightID(flightID);
 	setDepartureAirport(departureAirport);
+	setDepartureDay(day);
 	setArrivalAirport(arrivalAirport);
 	setStop_overAirport(stop_overAirport);
 	setDateDeparture(DateDeparture);
@@ -31,7 +33,7 @@ Flight::Flight(int flightID, string departureAirport, string arrivalAirport, str
 	setHourOfDeparture(Departuretime);
 	setArrivalTime(ArrivalTime);
 	setTrajectory(trajectory);
-
+	setNumSeats(seats);
 }
 
 //Get Functions
@@ -40,13 +42,17 @@ int Flight::getflightID() {
 	return flightID;
 
 }
-int Flight::getNumPassengers()
+int Flight::getNumSeats()
 {
-	return NumPassengers;
+	return NumSeats;
 }
 string Flight::getDepartureAirport() {
 
 	return departureAirport;
+}
+int Flight::getDepartureDay()
+{
+	return DepartureDay;
 }
 string Flight::getArrivalAirport() {
 
@@ -82,9 +88,17 @@ void Flight::setFlightID(int fi) {
 	flightID = fi;
 
 }
-void Flight::setNumPassengers()
+void Flight::setNumSeats(int seats)
 {
-	NumPassengers++;
+	NumSeats = seats;
+}
+void Flight::setNumSeatspp()
+{
+	NumSeats++;
+}
+void Flight::setNumSeatsmm()
+{
+	NumSeats--;
 }
 void Flight::setDepartureAirport(string da) {
 
@@ -105,6 +119,10 @@ void Flight::setDateDeparture(string dd) {
 
 	DateDeparture = dd;
 
+}
+void Flight::setDepartureDay(int day)
+{
+	DepartureDay = day;
 }
 void Flight::setDateArrival(string Da) {
 
@@ -134,8 +152,8 @@ void Flight::PrintFlightDetails() {
 		<< setw(widthFlight) << left << "Departure Date: " << setw(widthFlight) << getDateDeparture() << endl
 		<< setw(widthFlight) << left << "Arrival Date: " << setw(widthFlight) << getArrivalDeparture() << endl
 		<< setw(widthFlight) << left << "Departure Time: " << setw(widthFlight) << getHourOfDeparture() << endl
-		<< setw(widthFlight) << left << "Arrival Time: " << setw(widthFlight) << getArrivalTime() << endl << endl;
-
+		<< setw(widthFlight) << left << "Arrival Time: " << setw(widthFlight) << getArrivalTime() << endl 
+		<< setw(widthFlight) << left << "Seats left: " << setw(widthFlight) << getNumSeats() << endl << endl;
 }
 
 void Flight::PrintTrajectory() {

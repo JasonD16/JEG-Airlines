@@ -4,7 +4,6 @@
 #include <iomanip>
 
 using namespace std;
-int width = 10;
 //Activity
 Activity::Activity()
 {
@@ -22,6 +21,7 @@ Activity::Activity(string n, int s, int e)
 
 void Activity::PrintActivity(Activity& activity)
 {
+	int width = 15;
 	cout << "Activity Name:" << setw(width) << left << activity.ActivityName << setw(width) << endl
 		<< "Start time: " << setw(width) << left << activity.StartTime <<setw(width) << endl
 		<< "End time: " << setw(width) << left << activity.EndTime << setw(width) << endl << endl;
@@ -41,6 +41,7 @@ void Schedule::AddActivity(Activity& activity)
 void Schedule::PrintQueue(queue<Activity>& act)
 {
 	queue<Activity> act1 = act;
+	//Time Complexity: O(n)
 	while (act1.empty() == false)
 	{
 		Activity a = act1.front();

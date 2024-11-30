@@ -24,6 +24,7 @@ User::User(string address, string phone, set<string>& EmailSet, string email, st
 }
 
 // get functions
+
 string User::getAddress()
 {
 	return Address;
@@ -180,7 +181,6 @@ void User::setPassword(string p)// it contains the function check password;
 void User::setFlight(Flight f)
 {
 	F = f;
-	F.setNumPassengers();
 }
 
 void User::setSchedule(queue<Activity>& act)

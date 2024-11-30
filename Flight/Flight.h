@@ -10,11 +10,12 @@ class Flight // think of adding 1st class; economy; business etc...
 {
 private:
 	int flightID;
-	int NumPassengers = 0;
+	int NumSeats = 0;
 	string departureAirport;
 	string arrivalAirport;
 	string stop_overAirport;
 	string DateDeparture;
+	int DepartureDay;
 	string DateArrival;
 	int Departuretime; //hour
 	int ArrivalTime; //hour
@@ -25,12 +26,13 @@ public:
 	//constructor
 	Flight();
 	Flight(int flightID, string departureAirport, string arrivalAirport, string stop_overAirport,
-		string DateDeparture, string DateArrival, int Departuretime, int ArrivalTime, forward_list<Country>& trajectory);
+		string DateDeparture, string DateArrival, int Departuretime, int ArrivalTime, forward_list<Country>& trajectory, int day, int seats);
 
 	//Get Functions
 	int getflightID();
-	int getNumPassengers();
+	int getNumSeats();
 	string getDepartureAirport();
+	int getDepartureDay();
 	string getArrivalAirport();
 	string getStop_overAirport();
 	string getDateDeparture();
@@ -40,8 +42,11 @@ public:
 
 	//Set Function
 	void setFlightID(int);
-	void setNumPassengers();
+	void setNumSeats(int);
+	void setNumSeatspp();
+	void setNumSeatsmm();
 	void setDepartureAirport(string);
+	void setDepartureDay(int);
 	void setArrivalAirport(string);
 	void setStop_overAirport(string);
 	void setDateDeparture(string);

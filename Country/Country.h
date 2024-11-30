@@ -24,7 +24,7 @@ private:
 public:
 
 	//Constructor
-	Country(string = "Lebanon", string = "10 000 years", string = "Beirut", string = "Arabic", vector<string> = { " Baalbek", "Byblos", "Tyre" }, string = "Kebbeh", string = "");
+	Country(string = "Lebanon", string = "10 000 years", string = "Beirut", string = "Arabic", vector<string> = { " Baalbek", "Byblos", "Tyre" }, string = "Kebbeh", string = "23");
 
 	//Set function 
 	void SetCountryName(string);

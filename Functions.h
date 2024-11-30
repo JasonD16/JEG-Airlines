@@ -15,12 +15,7 @@ void printIntro()
 		<< "Please choose one of the following:\n" << endl;
 }
 
-void printIntro2()
-{
-
-}
-
-void LoadingFunc()
+void LoadingFunc()// DESIGN IDEA WWE GOT FROM THE INTERNET
 {
 
 	HANDLE hc = GetStdHandle(STD_OUTPUT_HANDLE);
