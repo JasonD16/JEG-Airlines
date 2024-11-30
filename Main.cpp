@@ -10,6 +10,7 @@
 #include "Functions.h"
 
 using namespace std;
+
 int main()
 {
 	//begin data fragment
@@ -94,7 +95,8 @@ int main()
 				}
 
 				cout << "Enter your email/username: "; //User Input
-				cin >> username;
+				cin.ignore();
+				getline(cin, username);
 				for (char& c : username)
 				{
 					c = tolower(c);
@@ -102,7 +104,7 @@ int main()
 
 				cout << endl << "Enter password: "; // User Input
 
-				cin >> password;
+				getline(cin, password);
 				//Time complexity:O(n)
 				for (int i = 0; i < UsersList.size(); i++)
 				{
